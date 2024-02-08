@@ -1,5 +1,5 @@
 {
-  "name": "proj-3",
+  "name": "pickwise",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -13,5 +13,14 @@
     "astro": "^4.3.5",
     "@astrojs/check": "^0.5.1",
     "typescript": "^5.3.3"
-  }
+  },
+  "description": "```sh npm create astro@latest -- --template minimal ```",
+  "main": "index.js",
+  "devDependencies": {},
+  "keywords": [
+    "review",
+    "comparison"
+  ],
+  "author": "Appniche Technologies",
+  "license": "ISC"
 }

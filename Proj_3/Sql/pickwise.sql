@@ -1,0 +1,43 @@
+CREATE DATABASE PICKWISE;
+
+-- 1.
+CREATE TABLE users(
+    UserId INT AUTO_INCREMENT PRIMARY KEY,
+    UserName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    PasswordHash VARCHAR(100) NOT NULL,
+    UserType VARCHAR(100) NOT NULL
+);
+
+-- 2.
+CREATE TABLE categories(
+    CategoryId INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(100) NOT NULL,
+);
+
+--3.
+CREATE TABLE products(
+    ProductId INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryID INT NOT NULL,
+    Title VARCHAR(100) NOT NULL,
+    Description VARCHAR(255) NOT NULL,
+    Price VARCHAR(20) NOT NULL,
+    Company VARCHAR(100) NOT NULL,
+    Ratings VARCHAR(2) NOT NULL,
+    Image LONGBLOB NOT NULL,
+    FOREIGN KEY (CategoryID) REFERENCES categories(CategoryId)
+);
+
+
+--4.
+CREATE TABLE reviews(
+    ReviewId INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Rating VARCHAR(2) NOT NULL,
+    Comments VARCHAR(255) NOT NULL,
+    Timestamp DATE NOT NULL
+    FOREIGN KEY (ProductID) REFERENCES products(ProductId)
+    FOREIGN KEY (UserID) REFERENCES users(UserId)
+);
+
