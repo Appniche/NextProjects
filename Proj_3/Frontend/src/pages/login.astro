@@ -1,6 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
+import { submit } from "./utils/form";
+
+// const res = await fetch("http://192.168.1.207:3000/api/feedback");
+// const data = await res.json();
+
 ---
 
 <Layout title="Login">
@@ -19,40 +24,47 @@ import Navbar from "../components/Navbar.astro";
 			</div>
 			<div class="container_2">
 				<form
-					action=""
+					id="loginform"
 					class="is-flex is-justify-content-space-evenly is-flex-direction-column px-6"
 				>
 					<div class="container">
 						<label for="">Sign Up</label>
 						<input
+							id="name"
 							class="input is-gray my-3"
 							type="text"
 							placeholder="Name"
+							name="name"
 						/>
 						<input
+							id="email"
 							class="input is-gray my-3"
 							type="text"
 							placeholder="Email"
+							name="email"
 						/>
 						<input
 							class="input is-gray my-3"
 							type="text"
 							placeholder="Password"
+							name="message"
 						/>
 					</div>
 
 					<div class="btns">
-						<button class="button is-link" type="submit"
+						<button id="btn" class="button is-link" type="submit"
 							>Submit</button
 						>
-						<button class="button is-danger" type="submit"
-							>Cancle</button
+						<button class="button is-danger">Cancle</button
 						>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+
+	<script src="../assets/js/form.js"></script>
+
 </Layout>
 
 <style>
