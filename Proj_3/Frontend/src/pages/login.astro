@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import { submit } from "./utils/form";
+
+
+---
+
+<Layout title="Login">
+	<Navbar />
+	<div class="section">
+		<div id="login" class="login_form">
+			<div class="container_1">
+				<figure>
+					<img
+						src="https://images.pexels.com/photos/1687341/pexels-photo-1687341.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+						alt="image"
+						width=""
+						height=""
+					/>
+				</figure>
+			</div>
+			<div class="container_2">
+				<form
+					id="loginform"
+					class="is-flex is-justify-content-space-evenly is-flex-direction-column px-6"
+				>
+					<div class="container">
+						<h1>Sign Up</h1>
+						<input
+							id="name"
+							class="input is-gray my-3"
+							type="text"
+							placeholder="Name"
+							name="name"
+						/>
+						<input
+							id="email"
+							class="input is-gray my-3"
+							type="text"
+							placeholder="Email"
+							name="email"
+						/>
+						<input
+							id="password"
+							class="input is-gray my-3"
+							type="text"
+							placeholder="Password"
+							name="password"
+						/>
+					</div>
+
+					<div class="btns">
+						<button id="btn" class="button is-link" type="submit"
+							>Submit</button
+						>
+						<button class="button is-danger">Cancle</button
+						>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="../assets/js/form.js"></script>
+
+</Layout>
+
+<style>
+	.container_1,
+	.container_2 {
+		width: 40%;
+		height: auto;
+		display: grid;
+		place-content: center;
+	}
+	.container_1 > figure > img{
+		border-radius: 20px 0px 0px 20px;
+	}
+	form {
+		gap: 1rem;
+		height: 40dvh;
+	}
+	.section {
+		width: 100dvw;
+		height: 100dvh;
+	}
+	.login_form,
+	.section {
+		height: 90dvh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.login_form {
+		width: 80dvw;
+		<!-- border: 1px solid blue; -->
+	}
+</style>

@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+
+//Images
+import navimg from "/public/binocular.svg";
+
+const navitems = [
+	{
+		label: "About Us",
+		link: "#about",
+	},
+
+	{
+		label: "Product",
+		link: "#product",
+	},
+];
+---
+
+<nav class="navbar px-6" role="navigation" aria-label="breadcrumb">
+	<div class="navbar-brand">
+		<a href="/" class="navbar-item title">
+			<Image
+				src={navimg}
+				alt="This is title image"
+				width={50}
+				height={50}
+			/>
+			<span>PickWise</span>
+		</a>
+
+		<a
+			role="button"
+			class="navbar-burger"
+			aria-label="menu"
+			aria-expanded="false"
+		>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+
+	<div class="navbar-menu nav_cnt">
+		<ul class="navbar-end">
+			{
+				navitems.map((items) => (
+					<li>
+						<a href={items.link} class="link_btn">
+							{items.label}
+						</a>
+					</li>
+				))
+			}
+			<a href="/login" class="button is-link is-rounded">Login</a>
+		</ul>
+	</div>
+</nav>
+
+<style>
+	/*Navbar style start*/
+
+	.navbar {
+		margin-bottom: 0px;
+	}
+	.nav_cnt {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.6rem 0px;
+	}
+	ul {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		gap: 1rem;
+	}
+	.title {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		margin: 0px;
+	}
+
+	/*Navbar link style*/
+
+	.link_btn {
+		list-style: none;
+		color: #000;
+		font-weight: 500;
+		transition: linear 0.2s;
+	}
+	.link_btn:hover {
+		color: #1688e6;
+	}
+</style>
