@@ -13,7 +13,6 @@ const pool = mysql.createPool(
     queueLimit: 0
 });
 
-
 const login = (username, password) => 
 {
     return new Promise((resolve, reject) => 
@@ -53,8 +52,7 @@ const login = (username, password) =>
         });
     });
 };
-  
-  
+
 const admin_login = (username, password) => 
 {
     return new Promise((resolve, reject) => 

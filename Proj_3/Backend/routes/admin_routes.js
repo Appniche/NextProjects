@@ -1,16 +1,11 @@
 // <---- App Libraries ---->
 const express = require("express");
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const path = require('path');
-const cons = require('consolidate');
-const axios = require('axios'); //For Inside Requests
+const router = express.Router();
 
 //<---- Image taking as input Modules ---->
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-const router = express.Router();
 
 // Backend Modules
 const accountCreate = require('../backend_modules/account_create');
@@ -18,7 +13,7 @@ const authenticate = require('../backend_modules/authenticate');
 const insert_db = require('../backend_modules/insert_apis');
 
 // Login
-router.post("/admin/login", async function(request, response) 
+router.post("/login", async function(request, response) 
 {
     const { username, password } = request.body;
 
@@ -43,7 +38,7 @@ router.post("/admin/login", async function(request, response)
 });
 
 // Register
-router.post("/admin/register", async function(request, response)
+router.post("/register", async function(request, response)
 {
     const { username, email, password } = request.body;
     try 
@@ -75,7 +70,7 @@ router.post("/admin/register", async function(request, response)
 });
 
 // Insertion APIs for admin
-app.post("/admin/insert/products", upload.single('image') ,async function(request, response)
+router.post("/insert/products", upload.single('image') ,async function(request, response)
 {
     const category = request.body.category;
     const subcategory = request.body.subcategory;
@@ -84,7 +79,7 @@ app.post("/admin/insert/products", upload.single('image') ,async function(reques
     const price = request.body.price;
     const company = request.body.company;
     const ratings = request.body.ratings;
-    const imageBuffer = request.file.buffer
+    const imageBuffer = ''
     try
     {
         const insertionResult = await insert_db.products(category, subcategory, title, description, price, company, ratings, imageBuffer);
@@ -111,6 +106,5 @@ app.post("/admin/insert/products", upload.single('image') ,async function(reques
         }
     }
 });
-
 
 module.exports = router;

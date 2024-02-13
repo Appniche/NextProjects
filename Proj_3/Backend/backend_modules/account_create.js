@@ -44,7 +44,6 @@ const register = (username, email, password) =>
     });
 };
 
-  
 const admin_register = (username, email, password) => 
 {
     return new Promise((resolve, reject) => 

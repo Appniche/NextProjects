@@ -63,7 +63,7 @@ router.post("/register", async function(request, response)
 });
 
 // Fetch APIs for admin(For Dashboard)(Rest APIs)
-app.get("/products", async function(request, response)
+router.get("/products", async function(request, response)
 {
   try 
   {
@@ -92,7 +92,6 @@ app.get("/products", async function(request, response)
     }
   }
 });
-
 
 // Company
 router.post("/company", async function(request, response)
@@ -125,7 +124,6 @@ router.post("/company", async function(request, response)
     }
 });
 
-
 // Category
 router.post("/category", async function(request, response)
 {
@@ -157,14 +155,13 @@ router.post("/category", async function(request, response)
     }
 });
 
-
 // Sub-Category
 router.post("/subcategory", async function(request, response)
 {
     const {subcategory} = request.body
     try 
     {
-        const fetchResult = await fetch_apis.categories(subcategory);
+        const fetchResult = await fetch_apis.subcategory(subcategory);
         // Check the return code to determine success or failure
         if (fetchResult.returncode === 0)
         {
@@ -188,4 +185,5 @@ router.post("/subcategory", async function(request, response)
         }
     }
 });
+
 module.exports = router;

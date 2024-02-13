@@ -25,7 +25,7 @@ const categories = (category_name) =>
                 return;
             }
 
-            const query = 'SELECT * FROM products p, categories c WHERE c.Name = ? AND  p.CategoryID = c.CategoryId;';
+            const query = 'SELECT * FROM products p, categories c WHERE c.CategoryName = ? AND  p.CategoryID = c.CategoryId;';
             connection.query(query, [category_name], (queryError, results) => 
             {
                 connection.release();

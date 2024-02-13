@@ -40,5 +40,4 @@ const products = (category, subcategory, title, description, price, company, rat
     });
 };
 
-
 module.exports = { products }
