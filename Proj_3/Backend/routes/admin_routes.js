@@ -79,7 +79,7 @@ router.post("/insert/products", upload.single('image') ,async function(request, 
     const price = request.body.price;
     const company = request.body.company;
     const ratings = request.body.ratings;
-    const imageBuffer = ''
+    const imageBuffer = request.file.buffer;
     try
     {
         const insertionResult = await insert_db.products(category, subcategory, title, description, price, company, ratings, imageBuffer);
