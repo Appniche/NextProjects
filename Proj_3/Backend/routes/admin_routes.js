@@ -82,7 +82,7 @@ router.post("/insert/products", upload.single('image') ,async function(request, 
     const imageBuffer = request.file.buffer;
     try
     {
-        const insertionResult = await insert_db.products(category, subcategory, title, description, price, company, ratings, imageBuffer);
+        const insertionResult = await insert_db.products_insertion(category, subcategory, title, description, price, company, ratings, imageBuffer);
         // Check the return code to determine success or failure
         if (insertionResult.returncode === 0)
         {

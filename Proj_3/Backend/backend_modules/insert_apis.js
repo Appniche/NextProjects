@@ -23,6 +23,7 @@ const products_insertion = (category, subcategory, title, description, price, co
                 reject({'returncode': 1, 'message': err, 'output': []});
                 return;
             }
+
             const query = 'INSERT INTO products (CategoryID, SubCategoryName, Title, Description, Price, Company, Ratings, Image) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';           
             connection.query(query, [category, subcategory, title, description, price, company, ratings, imageBuffer], (queryError, results) => 
             {
