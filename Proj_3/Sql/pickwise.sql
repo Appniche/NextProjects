@@ -21,12 +21,11 @@ CREATE TABLE categories(
 CREATE TABLE products(
     ProductId INT AUTO_INCREMENT PRIMARY KEY,
     CategoryID INT NOT NULL,
-    SubCategoryName VARCHAR(100) NOT NULL,
     Title VARCHAR(100) NOT NULL,
     Description VARCHAR(255) NOT NULL,
     Price VARCHAR(20) NOT NULL,
     Company VARCHAR(100) NOT NULL,
-    Ratings VARCHAR(5) NOT NULL,
+    Ratings VARCHAR(2) NOT NULL,
     Image LONGBLOB NOT NULL,
     FOREIGN KEY (CategoryID) REFERENCES categories(CategoryId)
 );

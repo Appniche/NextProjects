@@ -1,0 +1,10 @@
+#category{
+	background-color: var(--bg-primary);
+	margin: 0px 20px;
+	border-radius: 15px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	display: grid;
+	place-items: center;
+}

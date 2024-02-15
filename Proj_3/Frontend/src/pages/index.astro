@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Card from "../components/Card.astro";
 import { Image } from "astro:assets";
+import "../assets/css/index.css";
 
 //Images
 import img1 from "/public/illustration1.jpg";
@@ -13,12 +14,16 @@ const carditems = [
 		image: "https://images.pexels.com/photos/2047905/pexels-photo-2047905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 	},
 	{
-		header: "Home Essentials",
+		header: "Home Decor",
 		image: "https://images.pexels.com/photos/1148955/pexels-photo-1148955.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 	},
 	{
-		header: "Clothing Brands",
-		image: "https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		header: "House Appliances",
+		image: "https://images.pexels.com/photos/6125666/pexels-photo-6125666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+	},
+	{
+		header: "Automobiles",
+		image: "https://images.pexels.com/photos/2882234/pexels-photo-2882234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 	},
 ];
 ---
@@ -26,10 +31,10 @@ const carditems = [
 <Layout title="PickWise">
 	<Navbar />
 	<div class="hero is-fullheight-with-navbar">
-		<main class="container">
-			<div class="tile is-parent is-horizontal">
+		<main class="container is-widescreen">
+			<div class="columns fullheight is-flex is-align-items-center">
 				<div
-					class="tile is-child is-flex is-justify-content-center is-align-items-start is-flex-direction-column"
+					class="column is-flex is-justify-content-center is-align-items-start is-flex-direction-column"
 				>
 					<div class="brand_name">Pick<span>Wise</span></div>
 					<p class="title is-5">Your Guide to Better Picks</p>
@@ -41,19 +46,16 @@ const carditems = [
 					<button class="button is-link mt-4">Read more</button>
 				</div>
 				<div
-					class="tile img is-child is-flex is-justify-content-center is-align-items-center"
+					class="column img is-hidden-touch is-flex is-justify-content-center is-align-items-center"
 				>
-					<Image src={img1} alt="This is img" width={800} />
+					<Image src={img1} alt="This is img" width={600} />
 				</div>
 			</div>
 		</main>
 	</div>
-	<div class="container" id="product">
+	<div class="section" id="product">
 		<main class="container">
-			<div
-				class="tile is-parent"
-				style="place-content: center; place-items: center;"
-			>
+			<div class="" style="place-content: center; place-items: center;">
 				{
 					carditems.map((items) => (
 						<Card title={items.header} class="tile is-child">
@@ -69,29 +71,3 @@ const carditems = [
 		</main>
 	</div>
 </Layout>
-
-<style>
-	.container {
-		width: 100%;
-	}
-	.is-parent {
-		width: 100%;
-		height: 90dvh;
-		gap: 4rem;
-	}
-	.is-child {
-		width: 50%;
-		height: 100%;
-	}
-	.brand_name {
-		font-size: 8dvw;
-		font-weight: 600;
-	}
-	.brand_name > span {
-		color: #485fc7;
-	}
-	.card_img {
-		width: 30dvw;
-		height: 50dvh;
-	}
-</style>

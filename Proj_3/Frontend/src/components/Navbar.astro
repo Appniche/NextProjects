@@ -6,18 +6,17 @@ import navimg from "/public/binocular.svg";
 
 const navitems = [
 	{
-		label: "About Us",
-		link: "#about",
-	},
-
-	{
 		label: "Product",
 		link: "#product",
+	},
+	{
+		label: "About Us",
+		link: "#about",
 	},
 ];
 ---
 
-<nav class="navbar px-6" role="navigation" aria-label="breadcrumb">
+<nav class="navbar px-2" role="navigation" aria-label="breadcrumb">
 	<div class="navbar-brand">
 		<a href="/" class="navbar-item title">
 			<Image
@@ -41,7 +40,7 @@ const navitems = [
 		</a>
 	</div>
 
-	<div class="navbar-menu nav_cnt">
+	<div class="navbar-menu px-4">
 		<ul class="navbar-end">
 			{
 				navitems.map((items) => (

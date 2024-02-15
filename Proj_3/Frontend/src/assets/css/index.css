@@ -1,0 +1,27 @@
+
+/* This Css is for Desktop and mobile mixed */
+
+.fullheight {
+	height: 90dvh;
+	gap: 4rem;
+}
+.brand_name {
+	font-size: 110px;
+	font-weight: 800;
+}
+.brand_name > span {
+	color: #485fc7;
+}
+.card_img {
+	width: 30dvw;
+	height: 50dvh;
+}
+
+
+/* Only media querys here */
+
+@media screen and (max-width: 1024px) {
+	.brand_name{
+		font-size: 75px;
+	}
+}

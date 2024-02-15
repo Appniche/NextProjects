@@ -1,0 +1,149 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+---
+
+<Layout title="Admin Panel">
+	<Navbar />
+	<main>
+		<div class="section">
+			<div class="container">
+				<div class="title has-text-centered is-underlined py-4">
+					Add Items
+				</div>
+			</div>
+			<div class="container">
+				<form
+					class="form box"
+					action="http://localhost:3000/api/admin/insert/products"
+					method="post"
+					enctype="multipart/form-data"
+				>
+					<div class="tile is-parent">
+						<div class="tile is-child px-4">
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Category</label
+								>
+								<div class="control">
+									<div class="select is-medium is-link">
+										<select name="category">
+											<option value="1"
+												>Electronics</option
+											>
+											<option value="2">Automobile</option
+											>
+											<option value="3"
+												>House Decor</option
+											>
+											<option value="4"
+												>House Appliances</option
+											>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Sub category</label
+								>
+								<div class="control">
+									<input
+										class="input is-medium is-link"
+										type="text"
+										name="subcategory"
+									/>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Title</label
+								>
+								<div class="control">
+									<input
+										class="input is-medium is-link"
+										type="text"
+										name="title"
+									/>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Description</label
+								>
+								<div class="control">
+									<textarea
+										class="textarea is-medium is-link"
+										name="description"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="tile is-child px-4">
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Price</label
+								>
+								<div class="control">
+									<input
+										class="input is-medium is-link"
+										type="text"
+										name="price"
+									/>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Company</label
+								>
+								<div class="control">
+									<input
+										class="input is-medium is-link"
+										type="text"
+										name="company"
+									/>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Ratings</label
+								>
+								<div class="control">
+									<input
+										class="input is-medium is-link"
+										type="text"
+										name="ratings"
+									/>
+								</div>
+							</div>
+							<div class="field">
+								<label class="label is-medium" for=""
+									>Add Image</label
+								>
+								<div class="control">
+									<input
+										class="input is-medium is-link"
+										type="file"
+										name="image"
+										accept="image/*"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="field p-5">
+						<button
+							class="button is-link has-text-weight-bold is-medium"
+							type="submit">Submit</button
+						>
+						<button
+							class="button is-danger has-text-weight-bold is-medium mx-4"
+							type="reset">Cancel</button
+						>
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+
+	<!-- <script src="../assets/js/panel.js"></script> -->
+</Layout>

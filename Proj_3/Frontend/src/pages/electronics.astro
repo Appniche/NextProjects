@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import "../assets/css/categories.css";
+
+const prod_data = await fetch("http://localhost:3000/api/category", {
+	method: "POST",
+	headers: {
+		"Content-Type": "application/json",
+	},
+	body: JSON.stringify({ category: "Electronics" }),
+});
+
+const data = await prod_data.json();
+---
+
+<Layout title="Electronics">
+	<Navbar />
+	<main class="is-fullheight-with-navbar">
+		<div class="title has-text-centered">Electronics section</div>
+		<div class="container">
+			<div class="field">
+				<div class="control has-icons-left">
+					<input
+						class="input is-medium"
+						type="text"
+						placeholder="Search"
+					/>
+					<span class="icon is-large is-left">
+						<i class="fas fa-search"></i>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="section">
+				<div class="cont_1">
+					{
+						data.output.map((items: any) => (
+							<a href="/inner_item" id="stuff">
+								<div class="card">
+									<div class="card-image">
+										<img
+											src={`data:image/jpeg;base64,${items.Image}`}
+											alt="image"
+										/>
+									</div>
+									<div class="card-footer">
+										<span class="card-footer-item is-size-5 has-text-weight-bold">
+											{items.SubCategoryName}
+										</span>
+										<span class="card-footer-item is-size-5">
+											&#8377; {items.Price}
+										</span>
+									</div>
+								</div>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	#stuff {
+		width: 400px;
+	}
+	img {
+		width: 400px;
+		height: 300px;
+	}
+	.cont_1 {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3rem;
+		grid-template: auto auto;
+	}
+</style>
