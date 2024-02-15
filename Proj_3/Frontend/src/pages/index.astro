@@ -12,18 +12,22 @@ const carditems = [
 	{
 		header: "Electronics",
 		image: "https://images.pexels.com/photos/2047905/pexels-photo-2047905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		link: "/electronics",
 	},
 	{
 		header: "Home Decor",
 		image: "https://images.pexels.com/photos/1148955/pexels-photo-1148955.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		link: "/house_decor",
 	},
 	{
 		header: "House Appliances",
 		image: "https://images.pexels.com/photos/6125666/pexels-photo-6125666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		link: "/house_appliances",
 	},
 	{
 		header: "Automobiles",
 		image: "https://images.pexels.com/photos/2882234/pexels-photo-2882234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		link: "/automobile",
 	},
 ];
 ---
@@ -53,21 +57,30 @@ const carditems = [
 			</div>
 		</main>
 	</div>
-	<div class="section" id="product">
+	<div class="section sec_1" id="product">
 		<main class="container">
-			<div class="" style="place-content: center; place-items: center;">
+			<div class="test">
 				{
 					carditems.map((items) => (
-						<Card title={items.header} class="tile is-child">
-							<img
-								src={items.image}
-								alt="card image"
-								class="card_img"
-							/>
-						</Card>
+						<a href={items.link}>
+							<Card title={items.header} class="">
+								<img
+									src={items.image}
+									alt="card image"
+									class="card_img"
+								/>
+							</Card>
+						</a>
 					))
 				}
 			</div>
 		</main>
 	</div>
 </Layout>
+
+<style>
+	img {
+		width: 500px;
+		height: 400px;
+	}
+</style>

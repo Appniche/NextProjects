@@ -8,16 +8,16 @@ const prod_data = await fetch("http://localhost:3000/api/category", {
 	headers: {
 		"Content-Type": "application/json",
 	},
-	body: JSON.stringify({ category: "Electronics" }),
+	body: JSON.stringify({ category: "Automobile" }),
 });
 
 const data = await prod_data.json();
 ---
 
-<Layout title="Electronics">
+<Layout title="Automobile">
 	<Navbar />
 	<main class="is-fullheight-with-navbar">
-		<div class="title has-text-centered">Electronics section</div>
+		<div class="title has-text-centered">Automobile section</div>
 		<div class="container">
 			<div class="field">
 				<div class="control has-icons-left">
@@ -37,7 +37,7 @@ const data = await prod_data.json();
 				<div class="cont_1">
 					{
 						data.output.map((items: any) => (
-							<div id="stuff">
+							<a href="/inner_item" id="stuff">
 								<div class="card">
 									<div class="card-image">
 										<img
@@ -47,14 +47,14 @@ const data = await prod_data.json();
 									</div>
 									<div class="card-footer">
 										<span class="card-footer-item is-size-5 has-text-weight-bold">
-											{items.Title}
+											{items.SubCategoryName}
 										</span>
 										<span class="card-footer-item is-size-5">
 											&#8377; {items.Price}
 										</span>
 									</div>
 								</div>
-							</div>
+							</a>
 						))
 					}
 				</div>

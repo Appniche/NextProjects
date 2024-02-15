@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
 ---
 
 <Layout title="Login">
@@ -14,15 +14,22 @@ import Navbar from "../components/Navbar.astro";
 				>
 					<div class="container">
 						<h1 class="subtitle is-4 is-uppercase">
-							sign in /
-							<a href="/login_register">register</a>
+							register /
+							<a href="/admin/login">sign in</a>
 						</h1>
 						<input
 							id="name"
 							class="input is-medium is-link my-3"
 							type="text"
 							placeholder="Name"
-							name="name"
+							name="username"
+						/>
+						<input
+							id="email"
+							class="input is-medium is-link my-3"
+							type="text"
+							placeholder="Email"
+							name="email"
 						/>
 						<input
 							id="password"
@@ -48,7 +55,7 @@ import Navbar from "../components/Navbar.astro";
 		</div>
 	</div>
 
-	<script src="../assets/js/form.js"></script>
+	<script src="../../assets/js/form_admin_register.js"></script>
 </Layout>
 
 <style>
@@ -84,7 +91,7 @@ import Navbar from "../components/Navbar.astro";
 	}
 	.login_form {
 		width: 80dvw;
-		background-image: url("../assets/img/beautiful-transformed.png");
+		background-image: url("../../assets/img/beautiful-transformed.png");
 		background-repeat: no-repeat;
 		background-size: cover;
 		object-fit: cover;

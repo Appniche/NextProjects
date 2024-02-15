@@ -12,11 +12,19 @@
 .brand_name > span {
 	color: #485fc7;
 }
-.card_img {
-	width: 30dvw;
-	height: 50dvh;
+.card-image{
+	width: 320px;
 }
-
+.sec_1{
+	height: 100dvh;
+	justify-content: center;
+}
+.test , .sec_1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
 
 /* Only media querys here */
 

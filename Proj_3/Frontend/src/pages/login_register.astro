@@ -14,15 +14,22 @@ import Navbar from "../components/Navbar.astro";
 				>
 					<div class="container">
 						<h1 class="subtitle is-4 is-uppercase">
-							sign in /
-							<a href="/login_register">register</a>
+							register /
+							<a href="/login">sign in</a>
 						</h1>
 						<input
 							id="name"
 							class="input is-medium is-link my-3"
 							type="text"
 							placeholder="Name"
-							name="name"
+							name="username"
+						/>
+						<input
+							id="email"
+							class="input is-medium is-link my-3"
+							type="text"
+							placeholder="Email"
+							name="email"
 						/>
 						<input
 							id="password"
@@ -48,7 +55,7 @@ import Navbar from "../components/Navbar.astro";
 		</div>
 	</div>
 
-	<script src="../assets/js/form.js"></script>
+	<script src="../assets/js/form_register.js"></script>
 </Layout>
 
 <style>

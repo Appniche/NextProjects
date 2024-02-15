@@ -5,7 +5,7 @@ document.getElementById('loginform').addEventListener('submit', (event) =>
     const username = document.getElementById('name').value;
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost:3000/api/login', 
+    fetch('http://localhost:3000/api/admin/login', 
 	{
         method: 'POST',
         headers: 

@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+const res = await fetch("http://localhost:3000/api/products");
+
+const data = await res.json();
+
+var count = 0;
+---
+
+<Layout title="Admin Panel">
+	<Navbar />
+	<main>
+		<div class="section">
+			<div class="container">
+				<div class="columns">
+					<div
+						class="column is-11 has-text-centered title has-text-centered is-underlined py-4"
+					>
+						Products Dashboard
+					</div>
+					<div class="column"></div>
+					<div class="column">
+						<a href="/admin/admin_panel" class="button is-link"
+							>Add Products</a
+						>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<table class="table is-hoverable is-fullwidth">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Category</th>
+							<th>Subcategory</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Price</th>
+							<th>Company</th>
+							<th>Ratings</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							data.output.map((items: any) => (
+								<tr>
+									<th>{(count = count + 1)}</th>
+									<th>{items.CategoryName}</th>
+									<th>{items.SubCategoryName}</th>
+									<th>{items.Title}</th>
+									<th>{items.Description}</th>
+									<th>{items.Price}</th>
+									<th>{items.Company}</th>
+									<th>{items.Ratings}</th>
+									<th>
+										<a
+											class="button is-success"
+											href={`http://localhost:3000/api/delete/product/?product_id=${items.ProductId}`}
+										>
+											Delete
+										</a>
+									</th>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+
+	<!-- <script src="../assets/js/panel.js"></script> -->
+</Layout>
