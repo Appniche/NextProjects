@@ -38,6 +38,9 @@ const categories = (category_name) =>
         
                 if (results.length > 0) 
                 {
+                    results.forEach(element => {
+                        element.Image = Buffer.from(element.Image).toString('base64');
+                    });
                     // User authenticated successfully
                     resolve({'returncode': 0, 'message': 'Fetch successful', 'output': results});
                 } 
@@ -77,6 +80,9 @@ const subcategory = (subcategory_name) =>
         
                 if (results.length > 0) 
                 {
+                    results.forEach(element => {
+                        element.Image = Buffer.from(element.Image).toString('base64');
+                    });
                     // Fetch successful
                     resolve({'returncode': 0, 'message': 'Fetch successful', 'output': results});
                 } 
@@ -116,6 +122,10 @@ const company_name = (company_name) =>
         
                 if (results.length > 0) 
                 {
+                    results.forEach(element => {
+                        element.Image = Buffer.from(element.Image).toString('base64');
+                      });
+                    
                     // Fetch successful
                     resolve({'returncode': 0, 'message': 'Fetch successful', 'output': results});
                 } 
@@ -152,6 +162,9 @@ const products = () =>
     
             if (results.length > 0) 
             {
+                results.forEach(element => {
+                    element.Image = Buffer.from(element.Image).toString('base64');
+                  });
                 // Destinations Fetched
                 resolve({'returncode': 0, 'message': 'Fetched Products', 'output': results});
             } 
