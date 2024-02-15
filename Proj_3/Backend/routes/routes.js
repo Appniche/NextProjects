@@ -5,6 +5,7 @@ const router = express.Router();
 const accountCreate = require('../backend_modules/account_create');
 const fetch_apis = require('../backend_modules/fetch_apis');
 const authenticate = require('../backend_modules/authenticate');
+const insert_db = require('../backend_modules/insert_apis');
 
 // Login
 router.post("/login", async function(request, response) 
@@ -170,6 +171,69 @@ router.post("/subcategory", async function(request, response)
         else 
         {
             response.status(400).send({'returncode': 1, 'message': fetchResult.message, 'output': fetchResult.output});
+        }
+    } 
+  catch (error)
+    {
+        // Handle different types of errors (client-side vs server-side)
+        if (error.returncode)
+        {
+            response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+        }
+        else 
+        {
+            response.status(500).send({'returncode': 1, 'message': 'Internal Server Error', 'output': []});
+        }
+    }
+});
+
+// Fetch Products
+router.get("/fetch/product", async function(request, response)
+{
+    const product_id = request.query.product_id; 
+    try 
+    {
+        const fetchResult = await insert_db.product_fetch(product_id);
+        // Check the return code to determine success or failure
+        if (fetchResult.returncode === 0)
+        {
+            response.status(200).send({'returncode': 0, 'message': 'Data Fetched Successfully', 'output': fetchResult.output});
+        }
+        else 
+        {
+            response.status(400).send({'returncode': 1, 'message': fetchResult.message, 'output': fetchResult.output});
+        }
+    } 
+  catch (error)
+    {
+        // Handle different types of errors (client-side vs server-side)
+        if (error.returncode)
+        {
+            response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+        }
+        else 
+        {
+            response.status(500).send({'returncode': 1, 'message': 'Internal Server Error', 'output': []});
+        }
+    }
+});
+
+// Delete Products
+router.get("/delete/product", async function(request, response)
+{
+    const product_id = request.query.product_id; 
+
+    try 
+    {
+        const deleteResult = await insert_db.product_deletion(product_id);
+        // Check the return code to determine success or failure
+        if (deleteResult.returncode === 0)
+        {
+            response.status(200).send({'returncode': 0, 'message': 'Data Deleted Successfully', 'output': deleteResult.output});
+        }
+        else 
+        {
+            response.status(400).send({'returncode': 1, 'message': deleteResult.message, 'output': deleteResult.output});
         }
     } 
   catch (error)

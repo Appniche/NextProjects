@@ -12,7 +12,7 @@ const pool = mysql.createPool(
     queueLimit: 0
 });
 
-const products = (category, subcategory, title, description, price, company, ratings, imageBuffer) => 
+const products_insertion = (category, subcategory, title, description, price, company, ratings, imageBuffer) => 
 {
     return new Promise((resolve, reject) => 
     {
@@ -40,4 +40,59 @@ const products = (category, subcategory, title, description, price, company, rat
     });
 };
 
-module.exports = { products }
+const product_deletion = (product_id) => 
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+                reject({'returncode': 1, 'message': err, 'output': []});
+                return;
+            }
+            const query = 'DELETE FROM products WHERE ProductId = (?);';           
+            connection.query(query, [product_id], (queryError, results) => 
+            {
+                connection.release();
+
+                if (queryError) 
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+
+                resolve({'returncode': 0, 'message': 'Successful', 'output': []});
+            });
+        });
+    });
+};
+
+const product_fetch = (product_id) => 
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+                reject({'returncode': 1, 'message': err, 'output': []});
+                return;
+            }
+            const query = 'SELECT * FROM products WHERE ProductId = (?);';           
+            connection.query(query, [product_id], (queryError, results) => 
+            {
+                connection.release();
+
+                if (queryError) 
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+
+                resolve({'returncode': 0, 'message': 'Successful', 'output': results});
+            });
+        });
+    });
+};
+module.exports = { product_deletion, products_insertion, product_fetch }
