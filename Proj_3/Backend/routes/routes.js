@@ -188,10 +188,10 @@ router.post("/subcategory", async function(request, response)
 });
 
 // Fetch Products
-router.get("/fetch/product", async function(request, response)
+router.post("/fetch/product", async function(request, response)
 {
-    const product_1 = request.query.product1; 
-    const product_2 = request.query.product2; 
+    const product_1 = request.body.product1; 
+    const product_2 = request.body.product2; 
     try 
     {
         const fetchResult = await insert_db.product_fetch(product_1, product_2);
