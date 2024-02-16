@@ -88,6 +88,9 @@ const product_fetch = (product_1, product_2) =>
                     reject({'returncode': 1, 'message': queryError, 'output': []});
                     return;
                 }
+                results.forEach(element => {
+                    element.Image = Buffer.from(element.Image).toString('base64');
+                });
                 const query = 'SELECT * FROM products WHERE ProductId = (?);';           
                 connection.query(query, [product_2], (queryError, results1) => 
                 {
@@ -98,6 +101,9 @@ const product_fetch = (product_1, product_2) =>
                         reject({'returncode': 1, 'message': queryError, 'output': []});
                         return;
                     }
+                    results1.forEach(element => {
+                        element.Image = Buffer.from(element.Image).toString('base64');
+                    });
                     // console.log(results1);
                     results[1]=results1[0];
                     
