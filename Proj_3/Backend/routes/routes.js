@@ -190,10 +190,11 @@ router.post("/subcategory", async function(request, response)
 // Fetch Products
 router.get("/fetch/product", async function(request, response)
 {
-    const product_id = request.query.product_id; 
+    const product_1 = request.query.product1; 
+    const product_2 = request.query.product2; 
     try 
     {
-        const fetchResult = await insert_db.product_fetch(product_id);
+        const fetchResult = await insert_db.product_fetch(product_1, product_2);
         // Check the return code to determine success or failure
         if (fetchResult.returncode === 0)
         {

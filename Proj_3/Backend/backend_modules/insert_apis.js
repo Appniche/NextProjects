@@ -69,7 +69,7 @@ const product_deletion = (product_id) =>
     });
 };
 
-const product_fetch = (product_id) => 
+const product_fetch = (product_1, product_2) => 
 {
     return new Promise((resolve, reject) => 
     {
@@ -81,17 +81,29 @@ const product_fetch = (product_id) =>
                 return;
             }
             const query = 'SELECT * FROM products WHERE ProductId = (?);';           
-            connection.query(query, [product_id], (queryError, results) => 
+            connection.query(query, [product_1], (queryError, results) => 
             {
-                connection.release();
-
                 if (queryError) 
                 {
                     reject({'returncode': 1, 'message': queryError, 'output': []});
                     return;
                 }
+                const query = 'SELECT * FROM products WHERE ProductId = (?);';           
+                connection.query(query, [product_2], (queryError, results1) => 
+                {
+                    connection.release();
+    
+                    if (queryError) 
+                    {
+                        reject({'returncode': 1, 'message': queryError, 'output': []});
+                        return;
+                    }
+                    // console.log(results1);
+                    results[1]=results1[0];
+                    
+                    resolve({'returncode': 0, 'message': 'Successful', 'output': results});
+                });
 
-                resolve({'returncode': 0, 'message': 'Successful', 'output': results});
             });
         });
     });
