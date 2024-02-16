@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+const res = await fetch("http://localhost:3000/api/products");
+
+const data = await res.json();
+---
+
+<Layout title="Compare Items">
+	<Navbar />
+	<main class="container is-widescreen">
+		<div id="compare__box" class="section compare_box">
+			<div class="tile is-parent">
+				<div class="tile is-child child_1"></div>
+				<div class="tile is-child child_2"></div>
+				<span id="btn" class="btn">btn</span>
+			</div>
+		</div>
+	</main>
+
+	<script src="../../assets/js/category.js"></script>
+</Layout>

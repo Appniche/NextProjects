@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.1",
+    "@astrojs/language-server": "^2.7.4",
     "astro": "^4.3.5",
-    "@astrojs/language-server": "^2.7.3",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "fuse.js": "^7.0.0"
   }
 }

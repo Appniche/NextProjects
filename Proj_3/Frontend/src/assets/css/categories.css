@@ -8,3 +8,11 @@
 	display: grid;
 	place-items: center;
 }
+
+.compare_box{
+	display: none;
+}
+
+#compare__box.show{
+	display: block;
+}

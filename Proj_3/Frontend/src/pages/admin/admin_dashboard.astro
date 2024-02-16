@@ -13,10 +13,10 @@ var count = 0;
 	<Navbar />
 	<main>
 		<div class="section">
-			<div class="container">
+			<div class="section py-1 px-3">
 				<div class="columns">
 					<div
-						class="column is-11 has-text-centered title has-text-centered is-underlined py-4"
+						class="column is-10 title has-text-centered is-underlined py-4"
 					>
 						Products Dashboard
 					</div>
@@ -28,10 +28,10 @@ var count = 0;
 					</div>
 				</div>
 			</div>
-			<div class="container">
+			<div class="section">
 				<table class="table is-hoverable is-fullwidth">
 					<thead>
-						<tr>
+						<tr class="has-text-weight-bold is-size-5">
 							<th>No.</th>
 							<th>Category</th>
 							<th>Subcategory</th>
@@ -43,7 +43,7 @@ var count = 0;
 							<th>Delete</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="is-size-6">
 						{
 							data.output.map((items: any) => (
 								<tr>
@@ -57,7 +57,7 @@ var count = 0;
 									<th>{items.Ratings}</th>
 									<th>
 										<a
-											class="button is-success"
+											class="button is-danger"
 											href={`http://localhost:3000/api/delete/product/?product_id=${items.ProductId}`}
 										>
 											Delete

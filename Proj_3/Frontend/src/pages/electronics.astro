@@ -12,11 +12,15 @@ const prod_data = await fetch("http://localhost:3000/api/category", {
 });
 
 const data = await prod_data.json();
+
+const res = await fetch(
+	"http://localhost:3000/api/fetch/products/?product_id=",
+);
 ---
 
 <Layout title="Electronics">
 	<Navbar />
-	<main class="is-fullheight-with-navbar">
+	<main class="main">
 		<div class="title has-text-centered">Electronics section</div>
 		<div class="container">
 			<div class="field">
@@ -31,6 +35,44 @@ const data = await prod_data.json();
 					</span>
 				</div>
 			</div>
+			<form id="form_comp">
+				<div class="columns">
+					<div class="column">
+						<div class="select is-centered is-medium is-link">
+							<select id="selected_1">
+								{
+									data.output.map((items: any) => (
+										<option value={items.ProductId}>
+											{items.Title}
+										</option>
+									))
+								}
+							</select>
+						</div>
+					</div>
+					<div class="column">
+						<span class="subtitle">VS</span>
+					</div>
+					<div class="column">
+						<div class="select is-centered is-medium is-link">
+							<select id="selected_2">
+								{
+									data.output.map((items: any) => (
+										<option value={items.ProductId}>
+											{items.Title}
+										</option>
+									))
+								}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div>
+					<button class="button is-link is-medium" type="submit"
+						>Compare</button
+					>
+				</div>
+			</form>
 		</div>
 		<div class="section">
 			<div class="section">
@@ -41,16 +83,27 @@ const data = await prod_data.json();
 								<div class="card">
 									<div class="card-image">
 										<img
-											src={`data:image/jpeg;base64,${items.Image}`}
+											src={`data:image/*;base64,${items.Image}`}
 											alt="image"
 										/>
 									</div>
 									<div class="card-footer">
-										<span class="card-footer-item is-size-5 has-text-weight-bold">
-											{items.Title}
-										</span>
-										<span class="card-footer-item is-size-5">
-											&#8377; {items.Price}
+										<span class="card-footer-item has-text-weight-bold items">
+											<span class="mr-4">
+												{items.Title}
+											</span>
+											<span>&#8377; {items.Price}</span>
+											<input
+												id="inputChecked"
+												type="checkbox"
+												class="ml-4"
+											/>
+											<input
+												id="inputHidden"
+												type="hidden"
+												value={items.ProductId}
+												name="PI"
+											/>
 										</span>
 									</div>
 								</div>
@@ -61,9 +114,13 @@ const data = await prod_data.json();
 			</div>
 		</div>
 	</main>
+	<script src="../assets/js/category.js"></script>
 </Layout>
 
 <style>
+	.main {
+		height: 100dvh;
+	}
 	#stuff {
 		width: 400px;
 	}
@@ -76,5 +133,40 @@ const data = await prod_data.json();
 		flex-wrap: wrap;
 		gap: 3rem;
 		grid-template: auto auto;
+	}
+	.items {
+		display: flex;
+		justify-content: space-between;
+	}
+	#compare__box {
+		width: 90dvw;
+		height: 90dvh;
+		position: fixed;
+		top: 8dvh;
+		left: 5dvw;
+		background-color: #fff;
+		border: 1px solid black;
+		z-index: 100;
+		border-radius: 25px;
+		padding: 0.8rem;
+	}
+	#compare__box > .is-parent {
+		height: 100%;
+	}
+	.btn {
+		width: 50px;
+		height: 50px;
+		position: fixed;
+		top: 90px;
+		right: 25px;
+		color: black;
+		background-color: black;
+		color: white;
+	}
+	.column {
+		height: 70dvh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
