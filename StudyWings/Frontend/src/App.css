@@ -1,0 +1,23 @@
+#root{
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_div{
+  width: 200dvw;
+  height: 90dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('assets/img/img1.jpg');
+  background-size: cover;
+}
+
+form{
+  background-color: #fff;
+  padding: 35px;
+  border-radius: 20px;
+}
