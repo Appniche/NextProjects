@@ -1,0 +1,43 @@
+---
+import Layout from "../layout/Layout.astro"
+import Navbar from "../components/Navbar.astro"
+import Footer from "../components/Footer.astro"
+import FormRegister from "../components/Form_login.astro"
+---
+
+<Layout title="Hello">
+	<Navbar/>
+	<main class="main_1 hero">
+		<div class="container">
+			<FormRegister />
+		</div>
+	</main>
+	<Footer/>
+</Layout>
+
+<style is:inline>
+.main_1{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+form{
+	width: 35dvw;
+	padding: 3rem;
+	background-color: #fff;
+	border-radius: 20px;
+	box-shadow: 2px 2px 15px 15px lightgray;
+
+.btn-cnt{
+	padding-top: 1.5rem;
+}
+</style>

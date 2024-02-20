@@ -1,0 +1,30 @@
+---
+interface Props {
+	title:string,
+}
+const { title } = Astro.props;
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+:root{
+	
+}
+
+html,body{
+	width: 100dvw;
+	height: 100dvh;
+}
+</style>

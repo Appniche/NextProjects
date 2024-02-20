@@ -1,0 +1,66 @@
+---
+---
+
+<form id="Form">
+  <div class="field">
+    <label class="label is-medium" for="">Username</label>
+    <div class="control"><input id="username" class="input is-medium" type="text" placeholder="Username"></div>
+  </div>
+  <div class="field">
+    <label class="label is-medium" for="">Email</label>
+    <div class="control"><input id="email" class="input is-medium" type="email" placeholder="Email"></div>
+  </div>
+  <div class="field">
+    <label class="label is-medium" for="">Password</label>
+    <div class="control"><input id="password" class="input is-medium" type="password" placeholder="Password"></div>
+  </div>
+  <div class="field">
+    <label class="label is-medium" for="">Phone No</label>
+    <div class="control"><input id="phone" class="input is-medium" type="tel" placeholder="Phone no"></div>
+  </div>
+  <div class="field">
+    <div class="buttons">
+      <button class="button is-medium is-link">Submit</button>
+      <button class="button is-medium is-danger">Cancel</button>
+    </div>
+  </div>
+</form>
+
+<script is:inline>
+    const form = document.getElementById('Form');
+
+    form.addEventListener('submit', (ev) =>{
+      ev.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const phone = document.getElementById('phone').value;
+
+      fetch('http://localhost:3000/api/student/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password, phone }),
+      })
+        
+      .then(respose => respose.json())
+      .then(data => {
+
+      alert(data.message);
+
+      })
+
+      .catch((error) => {
+        console.error('Error:', error);
+      })
+
+    });
+</script>
+
+<style>
+.buttons{
+  margin-top: 2rem;
+}
+</style>
