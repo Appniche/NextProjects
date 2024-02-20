@@ -119,56 +119,7 @@ const account_update = (username, password, email, phone, userid) =>
     });
 }
 
-// Remove an existing student account
-const account_delete = (userid) => 
-{
-    return new Promise((resolve, reject) => 
-    {
-        // Get a connection from the pool
-        pool.getConnection((connection_error, connection) => 
-        {
-            if (connection_error) 
-            {
-                reject({ 'returncode': 1, 'message': connection_error, 'output': [] });
-            }
-
-            // Check if the user exists
-            connection.query('SELECT * FROM students WHERE Student_Id=?', [userid], (queryError, results) => 
-            {
-                if (queryError) 
-                {
-                    connection.release();
-                    reject({ 'returncode': 1, 'message': queryError, 'output': [] });
-                    return;
-                }
-
-                // If the user doesn't exist, reject the promise with an error message
-                if (results.length === 0) 
-                {
-                    connection.release();
-                    reject({ 'returncode': 1, 'message': 'User not found', 'output': [] });
-                    return;
-                }
-
-                // If the user exists, delete the account
-                const query = 'DELETE FROM students WHERE Student_Id=?';
-                connection.query(query, [userid], (query_Error, results) => 
-                {
-                    connection.release();
-                    if (query_Error) 
-                    {
-                        reject({ 'returncode': 1, 'message': query_Error, 'output': [] });
-                        return;
-                    }
-
-                    // Resolve the promise with the result of the delete operation
-                    resolve({ 'returncode': 0, 'message': 'Account Deleted', 'output': results[0] });
-                });
-            });
-        });
-    });
-}
-
+// Authenticate existing student account
 const account_login = (username, password) => 
 {
     return new Promise((resolve, reject) => 
@@ -210,4 +161,4 @@ const account_login = (username, password) =>
 };
 
 
-module.exports = { account_create, account_update, account_delete, account_login };
+module.exports = { account_create, account_update, account_login };
