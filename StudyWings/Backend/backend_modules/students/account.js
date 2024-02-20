@@ -50,7 +50,7 @@ const account_create = (username, password ,email, phone)=>
 
                 // If the user doesn't exist, create a new account
                 const query = 'INSERT INTO students (Student_UserName, Student_PasswordHash, Student_Phone, Student_Email) VALUES (?, ?, ?, ?)';
-                connection.query(query, [username, hashedPassword,email, phone], (queryError, results) => 
+                connection.query(query, [username, hashedPassword, phone, email], (queryError, results) => 
                 {
                     connection.release();
                     if(queryError)

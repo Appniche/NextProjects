@@ -25,7 +25,7 @@ router.post("/login", async function(request, response)
 
     try 
     {
-        const loginResult = await account.login(username, password);
+        const loginResult = await account.account_login(username, password);
 
         if (loginResult.returncode === 0) 
         {
