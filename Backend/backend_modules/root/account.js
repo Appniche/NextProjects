@@ -8,14 +8,14 @@ const pool = mysql.createPool(
     host: 'localhost',
     user: 'root',
     password: 'admin',
-    database: 'COUNSELLATION',
+    database: 'ROOT',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
 });
 
-// Create a new counsellor account
-const account_create = (username, email, password , first_name, last_name, department, specialisation , course_id)=>
+// Create a new root account
+const account_create = (username, password ,email)=>
 {
     return new Promise((resolve, reject)=>
     {
@@ -32,7 +32,7 @@ const account_create = (username, email, password , first_name, last_name, depar
             const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
             
             // Check if the user already exists
-            connection.query('SELECT * FROM counsellors WHERE Counsellor_UserName=?', [username], (query_error, results) => 
+            connection.query('SELECT * FROM root WHERE UserName=?', [username], (query_error, results) => 
             {
                 if (query_error) 
                 {
@@ -49,8 +49,8 @@ const account_create = (username, email, password , first_name, last_name, depar
                 }
 
                 // If the user doesn't exist, create a new account
-                const query = 'INSERT INTO counsellors (Counsellor_UserName, Counsellor_Email, Counsellor_PasswordHash, Counsellor_FirstName, Counsellor_LastName, Counsellor_Department, Counsellor_Specialization, CourseID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-                connection.query(query, [username, email, password , first_name, last_name, department, specialisation , course_id], (queryError, results) => 
+                const query = 'INSERT INTO root (UserName, PasswordHash, Email) VALUES (?, ?, ?)';
+                connection.query(query, [username, hashedPassword, email], (queryError, results) => 
                 {
                     connection.release();
                     if(queryError)
@@ -66,45 +66,8 @@ const account_create = (username, email, password , first_name, last_name, depar
     });
 }
 
-// Update an existing counsellor account
-const account_update = (username, email, password, first_name, last_name, department, specialisation, course_id, counsellor_id)=>
-{
-    return new Promise((resolve, reject)=>
-    {
-        // Get a connection from the pool
-        pool.getConnection((connection_error, connection)=>
-        {
-            if(connection_error)
-            {
-                reject({'returncode': 1, 'message': connection_error, 'output': []});
-                return;
-            }
 
-            // Hash the password using SHA-256 if it is provided
-            let hashedPassword = password;
-            if(password)
-            {
-                hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-            }
-
-            // Update the counsellor account
-            const query = 'UPDATE counsellors SET Counsellor_Email=?, Counsellor_PasswordHash=?, Counsellor_FirstName=?, Counsellor_LastName=?, Counsellor_Department=?, Counsellor_Specialization=?, CourseID=?, Counsellor_UserName=? WHERE Counsellor_Id=?';
-            connection.query(query, [email, hashedPassword, first_name, last_name, department, specialisation, course_id, username, counsellor_id], (queryError, results) => 
-            {
-                connection.release();
-                if(queryError)
-                {
-                    reject({'returncode': 1, 'message': queryError, 'output': []});
-                    return;
-                }
-
-                resolve({'returncode': 0, 'message': 'User Update successful', 'output': results[0]});
-            });
-        });
-    });
-}
-
-// Authenticate existing counsellor account
+// Authenticate existing root account
 const account_login = (username, password) => 
 {
     return new Promise((resolve, reject) => 
@@ -118,7 +81,7 @@ const account_login = (username, password) =>
             }
 
             const hashedEnteredPassword = crypto.createHash('sha256').update(password).digest('hex'); 
-            const query = 'SELECT * FROM counsellors WHERE Counsellor_UserName = ? AND Counsellor_PasswordHash = ?';
+            const query = 'SELECT * FROM root WHERE UserName = ? AND PasswordHash = ?';
             connection.query(query, [username, hashedEnteredPassword], (queryError, results) => 
             {
                 connection.release();
@@ -146,4 +109,4 @@ const account_login = (username, password) =>
 };
 
 
-module.exports = { account_create, account_update, account_login };
+module.exports = { account_create, account_login };

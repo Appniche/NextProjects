@@ -25,7 +25,7 @@ router.post("/login", async function(request, response)
 
     try 
     {
-        const loginResult = await account.login(username, password);
+        const loginResult = await account.account_login(username, password);
 
         if (loginResult.returncode === 0) 
         {
@@ -92,38 +92,6 @@ router.post("/update", async function(request, response)
         else 
         {
             response.status(400).send({'returncode': 1, 'message': updateResult.message, 'output': updateResult.output});
-        }
-    } 
-  catch (error)
-    {
-        // Handle different types of errors (client-side vs server-side)
-        if (error.returncode)
-        {
-            response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
-        }
-        else 
-        {
-            response.status(500).send({'returncode': 1, 'message': 'Internal Server Error', 'output': []});
-        }
-    }
-});
-
-// Delete Account
-router.post("/delete", async function(request, response)
-{
-    const { userid } = request.body
-    try 
-    {
-        const deleteResult = await account.account_delete(userid);
-        
-        // Check the return code to determine success or failure
-        if (deleteResult.returncode === 0)
-        {
-            response.status(200).send({'returncode': 0, 'message': 'User Deleted Successfully', 'output': []});
-        }
-        else 
-        {
-            response.status(400).send({'returncode': 1, 'message': deleteResult.message, 'output': deleteResult.output});
         }
     } 
   catch (error)

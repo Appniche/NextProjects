@@ -8,7 +8,7 @@ CREATE TABLE students(
     Student_UserName VARCHAR(100) NOT NULL,
     Student_PasswordHash VARCHAR(100) NOT NULL,
     Student_Phone VARCHAR(12) NOT NULL,
-    Student_Email VARCHAR(100) NOT NULL,
+    Student_Email VARCHAR(100) NOT NULL
 );
 
 CREATE DATABASE UNIVERSITIES;
@@ -57,13 +57,16 @@ USE COUNSELLATION;
 CREATE TABLE counsellors(
     Counsellor_Id INT AUTO_INCREMENT PRIMARY KEY,
     Counsellor_UserName VARCHAR(100) NOT NULL,
+    Counsellor_Email VARCHAR(100) NOT NULL,
     Counsellor_PasswordHash VARCHAR(100) NOT NULL,
     Counsellor_FirstName VARCHAR(100) NOT NULL,
     Counsellor_LastName VARCHAR(100) NOT NULL,
-    Counsellor_AssignedCountry VARCHAR(100) NOT NULL,
     Counsellor_Department VARCHAR(100) NOT NULL,
     Counsellor_Specialization VARCHAR(100) NOT NULL,
+    CourseID INT NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES UNIVERSITIES.university_courses(Course_Id)
 );
+
 
 -- 6.
 CREATE TABLE counsellation_sessions(
@@ -76,6 +79,7 @@ CREATE TABLE counsellation_sessions(
     FOREIGN KEY (StudentID) REFERENCES STUDENTS.students(Student_Id)
     FOREIGN KEY (CounsellorID) REFERENCES counsellors(Counsellor_Id)
 );
+
 
 CREATE DATABASE APPLICATIONS;
 
@@ -90,7 +94,7 @@ CREATE TABLE applications(
     Application_TravelStatus VARCHAR(100) NOT NULL,
     Application_PaymentStatus VARCHAR(100) NOT NULL,
     Application_RemainingPayment VARCHAR(10),
-    FOREIGN KEY (CourseID) REFERENCES UNIVERSITIES.university_courses(Course_Id)
+    FOREIGN KEY (CourseID) REFERENCES UNIVERSITIES.university_courses(Course_Id),
     FOREIGN KEY (StudentID) REFERENCES STUDENTS.students(Student_Id)
 );
 
@@ -105,17 +109,16 @@ CREATE TABLE student_registration(
     Student_DOB VARCHAR(20) NOT NULL,
     Student_Address VARCHAR(255) NOT NULL,
     Student_ProfilePic LONGBLOB NOT NULL,
-    ApplicationID INT,
     FOREIGN KEY (StudentID) REFERENCES students(Student_Id)
-    FOREIGN KEY (ApplicationID) REFERENCES APPLICATIONS.applications(Application_Id)
 );
+
 
 -- 9.
 CREATE TABLE student_documents(
     Student_DocumentId INT AUTO_INCREMENT PRIMARY KEY,
     StudentID INT NOT NULL,
-    Student_DocumentType VARCHAR(100) NOT NULL,
-    Student_DocumentPath VARCHAR(255) NOT NULL, --Stores path of Student's Docs
+    Student_DocumentName VARCHAR(100) NOT NULL,
+    Student_Document LONGBLOB NOT NULL,
     FOREIGN KEY (StudentID) REFERENCES students(Student_Id)
 );
 
@@ -137,4 +140,16 @@ CREATE TABLE predepart_sessions(
     Predepart_Link VARCHAR(255) NOT NULL,
     FOREIGN KEY (StudentID) REFERENCES STUDENTS.students(Student_Id)
     FOREIGN KEY (CounsellorID) REFERENCES counsellors(Counsellor_Id)
+);
+
+CREATE DATABASE ROOT;
+
+USE ROOT;
+
+--12.
+CREATE TABLE root(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    UserName VARCHAR(100) NOT NULL,
+    PasswordHash VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL
 );

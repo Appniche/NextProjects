@@ -3,12 +3,14 @@ CREATE DATABASE COUNSELLATION;
 CREATE TABLE counsellors(
     Counsellor_Id INT AUTO_INCREMENT PRIMARY KEY,
     Counsellor_UserName VARCHAR(100) NOT NULL,
+    Counsellor_Email VARCHAR(100) NOT NULL,
     Counsellor_PasswordHash VARCHAR(100) NOT NULL,
     Counsellor_FirstName VARCHAR(100) NOT NULL,
     Counsellor_LastName VARCHAR(100) NOT NULL,
-    Counsellor_AssignedCountry VARCHAR(100) NOT NULL,
     Counsellor_Department VARCHAR(100) NOT NULL,
     Counsellor_Specialization VARCHAR(100) NOT NULL,
+    CourseID INT NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES UNIVERSITIES.university_courses(Course_Id)
 );
 
 CREATE TABLE counsellation_sessions(
