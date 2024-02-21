@@ -7,14 +7,14 @@ const pool = mysql.createPool(
     host: 'localhost',
     user: 'root',
     password: 'admin',
-    database: 'UNIVERSITIES',
+    database: 'APPLICATIONS',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
 });
 
-// Create a new university
-const add = ( name, location, description, ranking, admission_process)=>
+// Create a new application
+const add = ( course_id, student_id, app_status, travel_status, payment_status, remaining_amt)=>
 {
     return new Promise((resolve, reject)=>
     {
@@ -29,8 +29,8 @@ const add = ( name, location, description, ranking, admission_process)=>
 
 
             // Adding a new Country
-            const query = 'INSERT INTO universities (University_Name, University_Location, Description, University_Ranking, University_AdmissionProcess) VALUES (?, ?, ?, ?, ?)';
-            connection.query(query, [name, location, description, ranking, admission_process], (queryError, results) => 
+            const query = 'INSERT INTO applications (CourseID, StudentID, Application_Status, Application_TravelStatus, Application_PaymentStatus, Application_RemainingPayment) VALUES (?, ?, ?, ?, ?, ?)';
+            connection.query(query, [course_id, student_id, app_status, travel_status, payment_status, remaining_amt], (queryError, results) => 
             {
                 connection.release();
                 if(queryError)
