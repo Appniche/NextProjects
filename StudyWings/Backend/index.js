@@ -37,10 +37,12 @@ app.use(cors());
 
 // Importing route files
 const studentRouter = require('./routes/student');
+const studentfetchRouter = require('./routes/fetch_student.js');
 
 // --------------------------
 //<---- Using route file ---->
 app.use('/api/student', studentRouter);
+app.use('/fetch/student', studentfetchRouter);
 
 // --------------------------
 

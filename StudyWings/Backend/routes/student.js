@@ -29,7 +29,7 @@ router.post("/login", async function(request, response)
 
         if (loginResult.returncode === 0) 
         {
-            response.status(200).send({'returncode': 0, 'message': 'Authentication Verified', 'output': []});
+            response.status(200).send({'returncode': 0, 'message': 'Authentication Verified', 'output': loginResult.output});
         }
         else 
         {
@@ -55,7 +55,7 @@ router.post("/register", async function(request, response)
         // Check the return code to determine success or failure
         if (registrationResult.returncode === 0)
         {
-            response.status(200).send({'returncode': 0, 'message': 'User Created Successfully', 'output': []});
+            response.status(200).send({'returncode': 0, 'message': 'User Created Successfully', 'output': registrationResult.output});
         }
         else 
         {

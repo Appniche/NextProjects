@@ -59,7 +59,18 @@ const account_create = (username, password ,email, phone)=>
                         return;
                     }
 
-                    resolve({'returncode': 0, 'message': 'User Creation successful', 'output': results[0]});
+                    const query = 'SELECT Student_Id FROM students WHERE Student_UserName = ?';
+                    connection.query(query, [username], (queryError, results) => 
+                    {
+                        connection.release();
+                        if(queryError)
+                        {
+                            reject({'returncode': 1, 'message': queryError, 'output': []});
+                            return;
+                        }
+
+                        resolve({'returncode': 0, 'message': 'User Creation successful', 'output': results[0]});
+                    });
                 });
             });
         });
@@ -133,7 +144,7 @@ const account_login = (username, password) =>
             }
 
             const hashedEnteredPassword = crypto.createHash('sha256').update(password).digest('hex'); 
-            const query = 'SELECT * FROM students WHERE Student_UserName = ? AND Student_PasswordHash = ?';
+            const query = 'SELECT Student_Id FROM students WHERE Student_UserName = ? AND Student_PasswordHash = ?';
             connection.query(query, [username, hashedEnteredPassword], (queryError, results) => 
             {
                 connection.release();
