@@ -1,10 +1,46 @@
-# Tasks to be done
+# Student
 
-## Backend
-### 1. Add Logic to add university, country, course using root account
+### 1. Login
+```
+localhost:3000/api/student/login
+```
 
 
-## Frontend 
-### 1. User Profile , add documents     =======> (Student)
-### 2. User Profile & documents update  =======> (Student)
-### 3. User Profile (Login, Register)   =======> (Counsellors, Root)
+### 2. Register
+```
+localhost:3000/api/student/register
+```
+
+
+### 3. Update Student Login
+```
+localhost:3000/api/student/update
+```
+
+
+### 4. User Profile Add
+```
+localhost:3000/api/student/account/details/add
+```
+
+
+### 5. User Profile Add
+```
+localhost:3000/api/student/account/details/add
+```
+
+
+### 6. User Profile Update
+```
+localhost:3000/api/student/account/details/update
+```
+
+### 7. User Document Add
+```
+localhost:3000/api/student/account/document/add
+```
+
+### 7. User Document Delete
+```
+localhost:3000/api/student/account/document/delete
+```
