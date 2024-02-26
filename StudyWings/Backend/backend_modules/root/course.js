@@ -13,7 +13,6 @@ const pool = mysql.createPool(
     queueLimit: 0
 });
 
-// Create a new course
 const add = (university_id, country_id, name, description, duration, fees, start_date, end_date, status)=>
 {
     return new Promise((resolve, reject)=>

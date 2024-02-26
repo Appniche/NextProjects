@@ -55,4 +55,46 @@ const registration_info = (user_id)=>
     });
 }
 
-module.exports = { registration_info };
+// Fetch Student Document Information
+const document_info = (user_id)=>
+{
+    return new Promise((resolve, reject)=>
+    {
+        // Get a connection from the pool
+        pool.getConnection((connection_error, connection)=>
+        {
+            if(connection_error)
+            {
+                reject({'returncode': 1, 'message': connection_error, 'output': []});
+                return;
+            }
+
+
+            // Adding a new Country
+            const query = 'SELECT * FROM student_documents WHERE StudentID=?';
+            connection.query(query, [user_id], (queryError, results) => 
+            {
+                connection.release();
+                if(queryError)
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+                if(results.length > 0)
+                {
+                    resolve({'returncode': 0, 'message': 'Fetched successfully', 'output': results});
+                    return;
+                    
+                }
+                else
+                {
+                    reject({'returncode': 1, 'message': 'Fetch unsuccessful', 'output': []});
+                    return;
+                }
+
+            });
+        });
+    });
+}
+
+module.exports = { registration_info, document_info };

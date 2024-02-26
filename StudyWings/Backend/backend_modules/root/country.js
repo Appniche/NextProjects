@@ -13,7 +13,6 @@ const pool = mysql.createPool(
     queueLimit: 0
 });
 
-// Create a new country
 const add = (country, description)=>
 {
     return new Promise((resolve, reject)=>

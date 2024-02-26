@@ -3,11 +3,6 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 
-// <---- Image taking as input Modules ---->
-const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
 // <---- Backend Modules ---->
 const account = require('../backend_modules/counsellation/account');
 
